@@ -33,14 +33,13 @@ public class User extends BaseTimeEntity{
     @Column()
     private String role = UserRole.USER.toString();
 
-    public User(String userId, String password, String createdDate) {
-        super(createdDate);
+    public User(String userId, String password) {
         setUserId(userId);
         setPassword(password);
     }
 
     public User(UserDto userDto) {
-        this(userDto.getUserId(), userDto.getPassword(), userDto.getCreatedDate());
+        this(userDto.getUserId(), userDto.getPassword());
     }
 
     public void setRole(UserRole role) {

@@ -25,7 +25,7 @@ public class PostService {
     }
 
     public Long createPost(PostDto postDto) {
-        Post post = new Post(postDto.getTitle(), postDto.getContents(), postDto.getCreatedDate(), postDto.getModifiedDate());
+        Post post = new Post(postDto.getTitle(), postDto.getContents());
         return postRepository.save(post).getId();
     }
 
