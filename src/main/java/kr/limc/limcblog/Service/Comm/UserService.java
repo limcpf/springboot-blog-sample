@@ -17,7 +17,7 @@ public class UserService {
 
     public User createUser(UserDto userDto) {
         User user = new User();
-
+        
         try {
             user = userRepository.save(new User(userDto));
         } catch(Exception e) {
@@ -37,7 +37,7 @@ public class UserService {
         }
 
         User result = userRepository.save(user);
-        System.out.println(result.getModifiedDate() + " : " + result.getRole());
+
         return result.getRole();
     }
 }

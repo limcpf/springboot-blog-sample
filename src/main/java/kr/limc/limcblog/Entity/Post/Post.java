@@ -31,8 +31,7 @@ public class Post extends BaseTimeEntity{
     @Column()
     private int show;
 
-    public Post(String title, String contents, String createdDate, String modifiedDate) {
-        super(createdDate, modifiedDate);
+    public Post(String title, String contents) {
         setTitle(title);
         setContents(contents);
     }
@@ -42,7 +41,6 @@ public class Post extends BaseTimeEntity{
         setTitle(postDto.getTitle());
         setContents(postDto.getContents());
         setShow(postDto.getShow());
-        super.setModifiedDate(postDto.getModifiedDate());
     }
 
     public void toggleShow() {
