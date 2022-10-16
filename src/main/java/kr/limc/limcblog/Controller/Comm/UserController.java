@@ -33,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok(loginResponse);
     }
 
-    @GetMapping(path = "/private/user")
+    @GetMapping(path = "/private/user/{id}")
     public UserDto getUser(@PathVariable String id) {
         return userService.getUserById(id).toDto();
     }
