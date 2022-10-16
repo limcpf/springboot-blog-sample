@@ -50,15 +50,15 @@ public class User extends BaseTimeEntity{
         }
     }
 
+    public void setPassword(String password) {
+        if(!StringUtils.hasLength(password)) throw new IllegalArgumentException("Password는 공백일 수 없습니다.");
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
     private void setUserId(String userId) {
         if(!StringUtils.hasLength(userId)) throw new IllegalArgumentException("Id는 공백일 수 없습니다.");
         else if(userId.length() > 25) throw new IllegalArgumentException("Id는 25자 이하여야 합니다.");
         this.userId = userId;
-    }
-
-    private void setPassword(String password) {
-        if(!StringUtils.hasLength(password)) throw new IllegalArgumentException("Password는 공백일 수 없습니다.");
-        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public UserDto toDto() {

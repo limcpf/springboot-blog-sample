@@ -20,8 +20,8 @@ public class PostService {
         return postRepository.findAll(pageable).map(Post::toDto).toList();
     }
 
-    public PostDto getPost(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 id 입니다.")).toDto();
+    public Post getPost(Long id) {
+        return postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 id 입니다."));
     }
 
     public Long createPost(PostDto postDto) {
@@ -34,20 +34,24 @@ public class PostService {
     }
 
     public int toggleShow(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 id 입니다."));
+        Post post = getPost(id);
         post.toggleShow();
         return postRepository.save(post).getShow();
     }
 
     public boolean deletePost(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 id 입니다."));
-        post.canDeletePost();
+        Post post = getPost(id);
+
         try {
-            postRepository.deleteById(post.getId());
+            if(post.canDeletePost()) {
+                postRepository.deleteById(post.getId());  
+            }
         } catch(Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
     }
+
+
 }
