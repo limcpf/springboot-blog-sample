@@ -28,7 +28,7 @@ public class PostController {
     @GetMapping(path = "/public/post/{id}")
     public PostDto getPost(@PathVariable Long id) {
         System.out.println(postService.getPost(id).getContents());
-        return postService.getPost(id);
+        return postService.getPost(id).toDto();
     }
     @PostMapping(path = "/private/post")
     public Long savePost(@RequestBody PostDto postDto) {
