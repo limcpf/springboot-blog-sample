@@ -23,6 +23,7 @@ public class UserService {
         try {
             user = userRepository.save(new User(userDto));
         } catch(Exception e) {
+            e.printStackTrace();
             throw new BlogException("오류가 발생했습니다.");
         }
         
